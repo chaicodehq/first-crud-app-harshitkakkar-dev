@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 /**
- * TODO: Validate MongoDB ObjectId
+ * TODO: Validate MongoDB ObjectId 
  *
  * - Check if req.params.id is valid using mongoose.Types.ObjectId.isValid()
  * - If invalid, return 400: { error: { message: "Invalid id" } }
@@ -9,4 +9,8 @@ import mongoose from "mongoose";
  */
 export function validateObjectId(req, res, next) {
   // Your code here
+
+  if(!mongoose.isValidObjectId(req.params.id)) return res.status(400).json({error: { message: "Invalid id"}});
+
+  next();
 }

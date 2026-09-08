@@ -9,6 +9,16 @@ import { Todo } from "../models/todo.model.js";
 export async function createTodo(req, res, next) {
   try {
     // Your code here
+    const {data} = req.body;
+    
+    const todo = await Todo.create({
+      title: data.title,
+      tags: data.tags,
+      dueDate: data.dueDate
+    });
+
+    return res.status(201).json({ todo });
+
   } catch (error) {
     next(error);
   }
@@ -18,11 +28,23 @@ export async function createTodo(req, res, next) {
  * TODO: List todos with pagination and filters
  * - Support query params: page, limit, completed, priority, search
  * - Default: page=1, limit=10
- * - Return: { data: [...], meta: { total, page, limit, pages } }
+  * - Return: { data: [...], meta: { total, page, limit, pages } }
  */
 export async function listTodos(req, res, next) {
   try {
-    // Your code here
+    // Your code here 
+
+    const {
+      page = 1,
+      limit = 10,
+      completed,
+      priority,
+      search
+    } = req.params;
+
+    
+
+
   } catch (error) {
     next(error);
   }
